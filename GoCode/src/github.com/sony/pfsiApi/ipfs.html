@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript">
+		 
+		
+			$(document).ready(function() {
+
+				$("#read").on('click', function() {
+					var hashValue=document.getElementById('hashValue').value;
+
+					var urlString  = "http://localhost:8080/readData/"+hashValue;
+				
+					document.write("File stored at C:/GoCode/src/github.com/sony/pfsiApi/storeFile");
+					$.ajax({
+						url:urlString ,
+						method: "GET",
+						success: function(data) {
+							$("#response").html(data);
+						},
+					});
+				});
+			});
+		</script>
+		<script type="text/javascript">
+		 
+		
+			$(document).ready(function() {
+
+				$("#delete").on('click', function() {
+					var hashValueDel=document.getElementById('hashValueDel').value;
+
+					var urlString  = "http://localhost:8080/deleteData/"+hashValueDel;
+				
+					document.write("Data unpined");
+					$.ajax({
+						url:urlString ,
+						method: "DELETE",
+						success: function(data) {
+							$("#response").html(data);
+						},
+					});
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#add").on('click', function() {
+					
+
+					var urlString  = "http://localhost:8080/addDir";
+				
+					
+					$.ajax({
+						url:urlString ,
+						method: "POST",
+						success: function(data) {
+							$("#response").html(data);
+						},
+					});
+				});
+			});
+		</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#create").on('click', function() {
+				$.ajax({
+					url: "http://localhost:8080/addData",
+					method: "POST",
+					success: function(data) {
+						$("#response").html(data);
+					},
+				});
+			});
+		});
+	</script>
+	</head>
+<body style = "background: url(https://udemy-images.udemy.com/course/750x422/1828118_d79f_4.jpg) ; background-size : 100% 200%;">
+	
+<h1 align="center" style="color:white">IPFS Crud </h1>
+
+<p align="center" style="color:white">IPFS CRUD.</p>
+<button type="button" onclick="document.getElementById('demo').innerHTML = Date()"> Click me to display Date and Time. </button>
+<br>
+<p id="demo"></p>
+</br>
+
+<input type="text" id="hashValue" name="hashValue" /><br />
+
+		<button id="read" type="submit">Enter hash of data to be stored</button>
+<br>
+<br>
+<button id="add" type="submit">Add Files from Directory and get hash</button>
+<br>
+<br>
+		<button id="create" type="submit">Test hello world hash</button>
+		<br>
+		<br>
+		<input type="text" id="hashValueDel" name="hashValueDel" /><br />
+
+
+		<button id="delete" type="submit">Enter Hash of the data to be deleted</button>
+
+		<div id="response"></div>
+		
+</body>
+</html>
